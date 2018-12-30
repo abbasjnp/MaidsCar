@@ -1,0 +1,88 @@
+<app-header></app-header>
+<app-sidemenu></app-sidemenu>
+    <div *ngIf="!errormsg" style="margin-left:12.9%">
+    <div class="row society-header">
+        <div class="col-sm-4">
+            <p class="Dashboard-Society">Dashboard / <span class="text-style-1">Employee</span></p>
+            <p class="Society">Employee</p>
+        </div>
+        <div class="col-sm-8 example-form">
+            <!-- <ul>
+            <li><i class="fa fa-search" style="color:darkgrey"></i><span>Search...</span></li>
+            <li></li>
+        </ul> -->
+            <form >
+                <table >
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <!-- <div>
+                                <span class="fa fa-search"></span>
+                                <input matInput placeholder="Search...">
+                                </div> -->
+                               
+                                <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Search...">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="search-by">
+                                <mat-select placeholder="Search by">
+                                    <mat-option *ngFor="let food of foods" [value]="food.name">
+                                        {{food.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <button type="button" class=" button button-filter"><img src="./../../assets/icon/filter-copy.png"  id="filter-icon" alt="">Filter</button>
+                        </td>
+                        <td>
+                            <button type="button" class="button button-upolad-excell"><i class="fa fa-upload"></i>Upload Excel File</button>
+                        </td>
+                        <td>
+                            <button type="button" class=" button button-add-society"><i class="fa fa-plus"></i>Add Employee</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <hr style="margin-top:0">
+      
+      <div class="employee_grid">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+
+            <ng-container *ngFor="let col of colDefs" [matColumnDef]="col.name">
+                <th mat-header-cell *matHeaderCellDef>{{col.displayName}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[col.name]}} </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions </th>
+                <td mat-cell *matCellDef="let row">
+                    <button type="button" class="btn btn-danger btn-circle btn-lg btn-del"><i class="fa fa-trash-o"
+                            aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-danger btn-circle btn-lg btn-edit"><i class="fa fa-pencil"
+                            aria-hidden="true"></i></button>
+                </td>
+             </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons style="width:100%;"></mat-paginator>
+    </div>
+    </div>
+    <h3>{{errormsg}}</h3>

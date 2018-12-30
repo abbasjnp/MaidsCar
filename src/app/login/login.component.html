@@ -1,0 +1,75 @@
+<div class="login-page">
+  <div class="login-area">
+      <div class="login-panel">
+        <div class="login-logo"><img src="./../../assets/icon/login-logo.png" alt="login-image"> </div>
+        <div class="sign-in" >
+            <h2>SIGN IN</h2>
+            <p>Hello There! Sign in to start managing your  Maids n Cars</p>
+        </div>
+        <div class="login-form">
+          <form class="form">
+            <div class="form-group">
+              <mat-form-field>
+                <input matInput type="text" class="input-full-width" class="form-control" placeholder="Email Id" 
+                 [(ngModel)]="loginUserData.email" name="email">
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <mat-form-field>
+                <input matInput type="password" class="form-control" class="input-full-width" placeholder="Password" 
+                  [(ngModel)]="loginUserData.password" name="password">
+              </mat-form-field>
+            </div>
+                  
+          </form>
+        </div>
+        <div >
+          <button (click)="loginUser()" class="login-button" type="submit">SIGN IN</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="login bg-orange">
+  <div class="login-page radius">
+      <div class="login-panel">
+        <div class="login-logo"><img class="main-img" src="../../../assets/img/mc-logo.png" /></div>
+        <div class="logo-text">
+          <h2> SIGN IN</h2>
+            <p>Hello There! Sign in to start managing your Maids n Cars</p>
+          </div>
+          <div class="login-form">
+        <form [formGroup]="loginForm">
+            <div class="cp-form-input">
+                <mat-form-field class="input-full-width">
+                <input
+                    type="text" name="email" formControlName="email" 
+                    matInput placeholder="Email" required/>
+                </mat-form-field>
+            </div>
+            <div class="cp-form-input">
+                <mat-form-field class="input-full-width">
+                <input
+                    type="text" name="password" formControlName="password" 
+                    matInput placeholder="Password" required/>
+                </mat-form-field>
+            </div>
+          
+          <div class="login-row">
+              <button (click)="getLogin()" [disabled]="loginForm.invalid" class="login-btn radius">SIGN IN
+                  <img class="icon-img marign-lt5px" src="../../../assets/img/sidn-icon.svg" />
+                </button>
+          </div>
+        </form>
+        </div>
+        <div class="fgt-pwd">Forgot password?
+            <span class="reset color-orange">Reset</span>
+          </div>
+      </div>
+  </div>
+</div> -->

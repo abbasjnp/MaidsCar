@@ -1,0 +1,77 @@
+
+ <app-header></app-header>
+ <app-sidemenu></app-sidemenu>
+<div *ngIf="!errormsg" style="margin-left:12.9%">
+<div class="container-fluid" >
+    <div class="row society-header ">
+        <div class="col-6">
+            <p class="Dashboard-Society">Dashboard / <span class="text-style-1">Residents</span></p>
+            <p class="Society">Residents</p>
+        </div>
+        <div class="col-6 example-form">
+          <ul class="matter">
+              <li>
+                <mat-form-field class="example-full-width">
+                    <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Search...">
+                </mat-form-field>
+              </li>
+              <li>
+                <mat-form-field class="search-by">
+                    <mat-select placeholder="Search by">
+                        <mat-option *ngFor="let food of foods" [value]="food.name">
+                            {{food.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+              </li>
+              <li>
+                <button type="button" class=" button button-add-society"><i class="fa fa-plus"></i>Filter</button>
+              </li>
+        
+          </ul>      
+        </div>
+    </div>
+</div> 
+<hr style="margin-top:0">
+
+<!-- <table mat-table [dataSource]="datasource" class="mat-elevation-z8"> -->
+    <!-- <ng-container *ngFor="let col of colDefs" matColumnDef="col.name">
+     <th mat-header-cell *matHeaderCellDef [ngStyle]="{'min-width':col.width}">{{col.displayName | uppercase}} </th>
+     <td mat-cell *matCellDef="let element" [ngStyle]="{'min-width': col.width}" innerHTML="{{(col.displayFcn) ? col.displayFcn(element):element[col.name]}}" > {{user.id}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+   
+    <div class="mat-table-main">
+        <mat-table #table [dataSource]="datasource" class="mat-table">
+          <ng-container *ngFor="let col of colDefs" [matColumnDef]="col.name">
+            <mat-header-cell *matHeaderCellDef class="mat-header-song" [ngStyle]="{'min-width': col.width}"> {{col.displayName | uppercase}}
+              </mat-header-cell>
+            <mat-cell *matCellDef="let element" [ngStyle]="{'min-width': col.width}" innerHTML="{{(col.displayFcn) ? col.displayFcn(element):element[col.name]}}">
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons style="width:100%;margin-left:11px"></mat-paginator>
+
+      </div>
+      </div>
+      <h3>{{errormsg}}</h3>
+
+    
+
+     <!-- <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+     </ng-container>
+     <ng-container matColumnDef="mobile">
+        <th mat-header-cell *matHeaderCellDef>Mobile No </th>
+        <td mat-cell *matCellDef="let user"> {{user.mobile}} </td>
+     </ng-container>
+    <ng-container matColumnDef="adults kids infant">
+        <th mat-header-cell *matHeaderCellDef>Total Family Members </th>
+        <td mat-cell *matCellDef="let user"> {{user.adults}}<span>,{{user.kids}}</span><span>,{{user.infant}}</span> </td>
+    </ng-container> -->
+<!-- </table> -->

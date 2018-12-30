@@ -1,0 +1,56 @@
+<app-header></app-header>
+<app-sidemenu></app-sidemenu>
+  <div class="add-society" style="margin-left:12.9%">
+     <div class="add-society-header ">
+            <p class="Dashboard-Society">Dashboard / <span class="Dashboard-Society">Society / 
+            </span><span class="text-style-1">Add Society</span></p>
+            <p class="Society">Add Society</p>
+      </div>
+      <hr style="margin-top:0;">
+      
+      <section [hidden]="submitted">
+        <header>Add Society</header>
+        <form (ngSubmit)="onSubmit(addSocietyObj)" #addSocietyForm="ngForm">
+        <div class="container section-container">
+          <div class="row">
+            <div class="col-6" style="padding-right:20px">
+               
+                <mat-form-field class="example-full-width">
+                  <input matInput type="text" name="name" [(ngModel)]="addSocietyObj.name" #name="ngModel"  placeholder="Society Name"  
+                      value="" required >                    
+                </mat-form-field>
+                
+                <mat-form-field class="example-full-width">
+                    <input matInput type="text" name="city" [(ngModel)]="addSocietyObj.city" placeholder="City" required >
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                      <input matInput type="text" name="PIN_CODE" [(ngModel)]="addSocietyObj.pincode"  placeholder="Pin Code" required>
+                    </mat-form-field>
+                   
+            </div>
+            <div class="col-6" style="padding-left:20px">
+                <mat-form-field class="example-full-width">
+                    <input matInput type="text" name="area" [(ngModel)]="addSocietyObj.area" placeholder="Sector Area" required>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                      <input matInput type="text" name="state" [(ngModel)]="addSocietyObj.state"  placeholder="State" required >
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input matInput  type="text" name="total_towers" [(ngModel)]="addSocietyObj.total_towers" placeholder="No of Tower" required>
+                      </mat-form-field>
+            </div>
+          </div>
+          <div style="float:right">
+              <button class="button button4" (click)="cancel()">Cancel</button>
+            <button type="submit" class="button btn btn-success" [disabled]="!addSocietyForm.form.valid" >Add Society</button>
+          </div>
+       </div>
+       </form>
+       
+      </section>
+      <div [hidden]="!submitted" class="success_society">
+        <h4 *ngIf="response"> You added a new Society successfully..</h4>
+        <h3>{{errormsg}}</h3>
+        <button class="goBack-button"(click)="goBack()">Go Back</button>
+      </div>
+    </div>      

@@ -1,0 +1,163 @@
+<app-header></app-header>
+<app-sidemenu></app-sidemenu>
+<div style="margin-left:12.9%">
+  <div *ngIf="!errormsg">
+      
+   <div class="container-fluid society-header">
+    <div class="row">
+        <div class="col-sm-4 ">
+            <p class="Dashboard-Society">Dashboard / <span class="text-style-1">Society</span></p>
+            <p class="Society">Society</p>
+        </div>
+        <div class="col-sm-8 society-header-left">
+            <form>
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <!-- <div>
+                                <span class="fa fa-search"></span>
+                                <input matInput placeholder="Search...">
+                                </div> -->
+
+                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search...">
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="search-by">
+                                <mat-select placeholder="Search by">
+                                    <mat-option *ngFor="let food of foods" [value]="food.name">
+                                        {{food.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <button type="button" class="button button-upolad-excell"><i class="fa fa-upload"></i>Upload
+                                Excel File</button>
+                        </td>
+                        <td>
+                            <button type="button" class=" button button-add-society" routerLink="/society/add society"><i
+                                    class="fa fa-plus"></i>Add Society</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+     </div>
+    </div>
+     <hr style="margin-top:0;margin-bottom: 0">
+     
+    <!-- <hr style="margin-top:0;width:100%"> -->
+    <!-- <div class="society_table">
+        <table class="table" >
+            <thead>
+            <tr class="bg-primary">
+              <th>ID</th>
+              <th>SOCIETY NAME</th>
+              <th>SECTOR/AREA</th>
+              <th>CITY</th>
+              <th>STATE</th>
+              <th>PIN CODE</th>
+              <th>NO OF TOWERS</th>
+            </tr> 
+            </thead>
+
+            <tbody>
+            <tr *ngFor ="let find of society">
+              <td >{{find.id}}</td>
+              <td>{{find.name}}</td>
+              <td>{{find.area}}</td>
+              <td>{{find.city}}</td>
+              <td>{{find.state}}</td>
+              <td>{{find.pincode}}</td>
+              <td>{{find.total_towers}}</td>
+            </tr>
+            </tbody>
+        </table>
+          
+    </div>  -->
+    <div class="row society-grid">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID. </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> SOCIETY NAME </th>
+                <td mat-cell *matCellDef="let society"> {{society.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="area">
+                <th mat-header-cell *matHeaderCellDef> SECTOR AREA</th>
+                <td mat-cell *matCellDef="let society"> {{society.area}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef> CITY </th>
+                <td mat-cell *matCellDef="let society"> {{society.city}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef> STATE </th>
+                <td mat-cell *matCellDef="let society"> {{society.state}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="pincode">
+                <th mat-header-cell *matHeaderCellDef> PIN CODE </th>
+                <td mat-cell *matCellDef="let society"> {{society.pincode}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="total_towers">
+                <th mat-header-cell *matHeaderCellDef> NO OF TOWERS </th>
+                <td mat-cell *matCellDef="let society"> {{society.total_towers}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions </th>
+                <td mat-cell *matCellDef="let row">
+                    <!-- <button  style="border-radius: 50%;width: 30px;height:30px;"><img src="./../../assets/icon/delete.png" width="30px" height="30px"></button>
+       
+            <button  ><img src="./../../assets/icon/edit.png" width="30px" height="30px"></button> -->
+                    <!-- <button class="action-button"></button> -->
+                    <button type="button" class="btn btn-danger btn-circle btn-lg btn-del"><i class="fa fa-trash-o"
+                            aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-danger btn-circle btn-lg btn-edit"><i class="fa fa-pencil"
+                            aria-hidden="true"></i></button>
+                </td>
+
+
+            </ng-container>
+
+            <!-- <ng-container cdkColumnDef="actions">
+        <md-header-cell > Actions </md-header-cell>
+        <md-cell *cdkCellDef="let row" >
+             <button md-raised-button >Edit</button> 
+        </md-cell>
+    </ng-container>  -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons style="width:96%;margin-left:11px"></mat-paginator>
+    </div>
+    </div>
+
+    <h4>{{errormsg}}</h4>
+    </div>
