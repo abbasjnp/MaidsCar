@@ -6,7 +6,8 @@ import{Society} from './../../society.interface'
 import { compileNgModule } from '@angular/core/src/render3/jit/module';
 import {Observable} from 'rxjs'
 import{SelectionModel} from '@angular/cdk/collections';
-import { error } from '@angular/compiler/src/util';
+import{PageEvent} from '@angular/material'
+//import { count } from 'rxjs/operators';
 
 export interface Food {
     id: string;
@@ -20,11 +21,13 @@ export interface Food {
 })
 
 export class SocietyComponent{
-    public currentPage=1;
+    public pageNumber=1;
     public society=[];
     public dataSource;
     public selection;
     public errormsg;
+    public pages;
+    public count;
     
 
     constructor(private adminService:AdminService){  }
@@ -33,10 +36,12 @@ export class SocietyComponent{
         this.getSocietyList();
      }
      getSocietyList(){
-        this.adminService.getSociety()
+        this.adminService.getSociety(this.pageNumber)
         .subscribe(data =>{
-             this.society=data; 
-             console.log(data)      
+             this.society=data['data']; 
+             this.pages = data['total_pages'];
+             this.count = data ['count']
+             console.log(this.pages,this.count);      
              this.dataSource = new MatTableDataSource<Society>(this.society);
              this.dataSource.paginator = this.paginator; 
                            },
@@ -47,13 +52,25 @@ export class SocietyComponent{
            
                   ); 
 
-//  Code for the selection operation
-const initialSelection = [];
-const allowMultiSelect = true;
-this.selection = new SelectionModel<Society[]>(allowMultiSelect, initialSelection);
+        //  Code for the selection operation
+        const initialSelection = [];
+        const allowMultiSelect = true;
+        this.selection = new SelectionModel<Society[]>(allowMultiSelect, initialSelection);
 
      }
 
+     length = this.count;
+     pageSize = 10;
+     pageIndex = this.pages;
+     pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+     pageEvent: PageEvent;
+
+     nextPage(event:any){
+                
+     }
+     
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     displayedColumns: string[] = ['select','id', 'name', 'area', 'city','state','pincode','total_towers','actions'];
@@ -78,6 +95,8 @@ this.selection = new SelectionModel<Society[]>(allowMultiSelect, initialSelectio
      applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
       }
+
+      
 
     
 

@@ -8,7 +8,8 @@ import {Router} from '@angular/router'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginUserData ={}
+  loginUserData={};
+  requestData={}
 
   constructor(private authService:AuthService,
               private router: Router) { }
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(){
-    this.authService.loginUser(this.loginUserData)
+
+    let cipher_text=btoa(this.loginUserData.email+":"+this.loginUserData.password);
+    this.requestData={"cipher_text":cipher_text};
+    this.authService.loginUser(this.requestData)
                 .subscribe(
                   res =>{
                     console.log(res),
@@ -27,6 +31,9 @@ export class LoginComponent implements OnInit {
                   },
                   error =>console.log(error)
                 )
+                
+
+                console.log();
   }
 
 }

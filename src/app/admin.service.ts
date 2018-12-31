@@ -24,14 +24,9 @@ export class AdminService {
     constructor(private http: HttpClient) { }
 
 
-    getSociety(): Observable<Society[]> {
-             return this.http.get<Society[]>((this._base+'/socity/'),this.httpOptions) 
-                            .pipe(map((data:any)=>data.data ),
-                                  retry(3),
-                                  catchError(this.errorHandler)  );
-                            
-                        
-                 }
+    getSociety(pageNumber:number): Observable<Society[]> {
+             return this.http.get<Society[]>((this._base+'/socity/?page='+pageNumber),this.httpOptions) 
+          }
     addSociety(society:Society):Observable<Society>{
         return this.http.post<Society>((this._base+'/socity'),society,this.httpOptions)
                                     .pipe(map((data:any)=>data),

@@ -155,7 +155,11 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons style="width:96%;margin-left:11px"></mat-paginator>
+        <mat-paginator [length]="10"
+        [pageSize]="5"
+        [pageIndex]="pages"
+        
+        (page)="nextPage($event)" showFirstLastButtons style="width:96%;margin-left:11px"  ></mat-paginator>
     </div>
     </div>
 

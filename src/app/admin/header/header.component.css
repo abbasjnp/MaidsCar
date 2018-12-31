@@ -18,7 +18,7 @@ header {
   }
   .admin-name{
     margin-left: 15px;
-    font-size: 13px;
+    font-size: 16px;
     padding-top: 6px;
     margin-top:7px;
   }
@@ -54,4 +54,17 @@ header {
     margin-left: 15px;
     font-size: 18px;
     padding-bottom: 15px
+  }
+
+  /* Logout drop Down CSS */
+  a:hover p{
+    display:block;
+    position:fixed;
+  }
+  p {
+    display: none;
+    color:white;
+    background-color:#141d26;
+    padding: 10px;
+    border-radius: 5px;
   }
