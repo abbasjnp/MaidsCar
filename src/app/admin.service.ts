@@ -24,8 +24,22 @@ export class AdminService {
     constructor(private http: HttpClient) { }
 
 
-    getSociety(pageNumber:number): Observable<Society[]> {
-             return this.http.get<Society[]>((this._base+'/socity/?page='+pageNumber),this.httpOptions) 
+    getSociety(options,SuccessCall){
+
+        // return this.http.get(url, options).pipe(
+        //     retry(3), // retry a failed request up to 3 times
+        //     catchError(this.handleError) // then handle the error
+        //   );
+
+          
+              this.http.get((this._base+'/socity/?page='+options),this.httpOptions).subscribe(
+                    (res:any)=>{
+                        SuccessCall(res)
+                        console.log(res,"lllllllll")
+                    }
+             )
+            
+             
           }
     addSociety(society:Society):Observable<Society>{
         return this.http.post<Society>((this._base+'/socity'),society,this.httpOptions)

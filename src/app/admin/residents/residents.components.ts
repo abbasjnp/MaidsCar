@@ -19,6 +19,9 @@ export class ResidentsComponent{
     public datasource;
     public errormsg;
 
+    @ViewChild(MatPaginator) 
+     paginator: MatPaginator;
+
     colDefs = [
         {
             name:'id',
@@ -89,8 +92,11 @@ export class ResidentsComponent{
 
     ]
     constructor(private adminservice:AdminService){
+
         
+console.log(this.paginator,"]]]]]]]]]]]");
       }
+      displayedColumns = this.colDefs.map(c => c.name);
       
 
    
@@ -118,10 +124,9 @@ export class ResidentsComponent{
             return type;
         }
     }
+
     // displayedColumns:string[] = ['id','name','mobile','adults','kids','infant'];
-     @ViewChild(MatPaginator) 
-     paginator: MatPaginator;
-     displayedColumns = this.colDefs.map(c => c.name);    
+        
      applyFilter(filterValue: string) {
      this.datasource.filter = filterValue.trim().toLowerCase();
       }

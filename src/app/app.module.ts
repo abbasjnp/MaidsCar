@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import{ AdminService } from './admin.service'
 import{ HttpClientModule } from '@angular/common/http'
@@ -6,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import{ SideMenuComponent } from './admin/sidemenu/sidemenu.component';
-import{SocietyComponent} from './admin/society/society.component';
+import{ SocietyComponent} from './admin/society/society.component';
 import{ ResidentsComponent } from './admin/residents/residents.components';
 import { EmployeeComponent } from './admin/employee/employee.component';
 import { AddSocietyComponent } from './admin/society/add-society/add-society.component';
@@ -18,11 +19,16 @@ import {MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
         MatTableModule,
-        MatPaginatorModule,
+    
         MatCheckboxModule,
         MatCardModule,
+        MatProgressSpinnerModule,
        } 
        from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator'
+
+import{PracticeComponent}  from './admin/practice/practice.component'
+import{SimpleComponent} from './admin/practice2/simple-component'
 
 
 
@@ -36,11 +42,14 @@ import {MatFormFieldModule,
     EmployeeComponent,
     AddSocietyComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    PracticeComponent,
+    SimpleComponent
   
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -54,7 +63,12 @@ import {MatFormFieldModule,
     MatPaginatorModule,
     MatCheckboxModule,
     MatCardModule,
+    MatProgressSpinnerModule
   ],
+  exports: [
+    MatTableModule,
+    MatPaginatorModule
+],
   providers: [AdminService],
   bootstrap: [AppComponent]
 })

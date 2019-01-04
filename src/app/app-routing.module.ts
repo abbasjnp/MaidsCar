@@ -6,6 +6,7 @@ import { ResidentsComponent } from './admin/residents/residents.components';
 import{ EmployeeComponent } from './admin/employee/employee.component';
 import { AddSocietyComponent } from './admin/society/add-society/add-society.component';
 import { LoginComponent } from './login/login.component';
+import { PracticeComponent } from './admin/practice/practice.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'residents', component:ResidentsComponent},
   {path:'employee', component:EmployeeComponent},
   {path:'society/add society',component:AddSocietyComponent},
-  {path:'admin',component:AdminComponent}
+  {path:'admin',component:AdminComponent},
+  {path:'practice',component:PracticeComponent}
 
   
 ];
