@@ -59,14 +59,21 @@
     margin-top: 10px;
 }
 .login-button{
-  width: 397px;
+  width: 345px;
   height: 54px;
   border-radius: 10px;
   border:none;
   background-image: linear-gradient(to top, #ff4c01, #ff6f33);
-  margin-left: -105px;
+  /* background-color: #ff4c01; */
+  margin-top:18px;
   color:white;
 }
+
+
+  
+  .example-full-width {
+    width: 100%;
+  }
 
 
 

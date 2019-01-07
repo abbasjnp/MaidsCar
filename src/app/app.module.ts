@@ -23,6 +23,8 @@ import {MatFormFieldModule,
         MatCheckboxModule,
         MatCardModule,
         MatProgressSpinnerModule,
+        MatDialogModule,
+        MatSnackBarModule,
        } 
        from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator'
@@ -54,7 +56,7 @@ import{SimpleComponent} from './admin/practice2/simple-component'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    MatDialogModule,
     NoopAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -63,7 +65,8 @@ import{SimpleComponent} from './admin/practice2/simple-component'
     MatPaginatorModule,
     MatCheckboxModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   exports: [
     MatTableModule,

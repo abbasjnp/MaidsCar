@@ -40,12 +40,12 @@ export class SocietyComponent implements OnInit, AfterViewInit {
    
     
     ngOnInit(){
-        debugger
+        
         this.getSocietyList();
     }
 
     getSocietyList() {
-        debugger
+        
         this.adminService.getSociety(
             this.page,
             res => {
@@ -59,14 +59,14 @@ export class SocietyComponent implements OnInit, AfterViewInit {
         this.selection = new SelectionModel<Society[]>(allowMultiSelect, initialSelection);
     }
     ngAfterViewInit() { 
-        debugger
+        
         this.paginator.page
             .pipe(
                 tap(() => {
                     console.log(this.paginator.pageIndex);
                     this.page = this.paginator.pageIndex+1
                     this.getSocietyList();
-                    debugger
+                    
                 })
             ).subscribe()
           }

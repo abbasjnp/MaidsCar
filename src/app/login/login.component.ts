@@ -1,6 +1,8 @@
 import {Component, OnInit } from '@angular/core';
 import {AuthService} from './../auth.service';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-login',
@@ -12,10 +14,12 @@ export class LoginComponent implements OnInit {
     email:"",
     password:""
   };
-  requestData={}
+  requestData={};
+  public showError:string;
 
   constructor(private authService:AuthService,
-              private router: Router) { }
+              private router: Router,
+              public snackBar:MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -27,16 +31,25 @@ export class LoginComponent implements OnInit {
     this.authService.loginUser(this.requestData)
                 .subscribe(
                   res =>{
-                    console.log(res),
-                    localStorage.setItem('token',res.token),
+                    console.log(res);
+                    if(res.success){
+                    localStorage.setItem('access_token',res.access_token),
                     this.router.navigate(['/society'])
-
+                    
+                    }
+                    else{
+                      console.log(res.error);
+                      this.showError = res.error;
+                      this.snackBar.open(this.showError, '', {
+                        duration: 4000,
+                        verticalPosition: 'top',
+                        horizontalPosition: 'right',
+                        panelClass: 'back-green'
+                      });
+                    }
                   },
                   error =>console.log(error)
                 )
-                
-
-                console.log();
   }
 
 }
