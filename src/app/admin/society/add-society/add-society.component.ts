@@ -4,6 +4,7 @@ import { SocietyComponent } from '../society.component';
 import{AdminService} from './../../../admin.service';
 import{Router} from '@angular/router';
 import{Location}from '@angular/common'
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
     selector:'add-society-component',
@@ -34,8 +35,10 @@ export class AddSocietyComponent{
           this.submitted=true;
           this.adminService.addSociety(this.addSocietyObj)
                              .subscribe(res=>{
-                                 this.response=res;
-                                 console.log(res);
+                                 if(res.success){
+                                 this.response=res.message;
+                                 console.log(this.response);
+                                 }
                              },
                              error=>{
                                  this.errormsg=error;

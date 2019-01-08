@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import{User} from './user'
 
 @Component({
   selector: 'app-practice',
@@ -11,6 +12,11 @@ export class PracticeComponent implements OnInit {
 
   ngOnInit() {
   }
-  userText:string ="Pragim";
+  topics = ['Angular','React','View'];
+  userModel = new User('Rob','rob@test.com',9999999,' ','morning',true);
+
+  onSubmit(){
+    console.log(this.userModel);
+  }
 
 }

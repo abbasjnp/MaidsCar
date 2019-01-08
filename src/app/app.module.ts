@@ -25,6 +25,7 @@ import {MatFormFieldModule,
         MatProgressSpinnerModule,
         MatDialogModule,
         MatSnackBarModule,
+        MatIconModule,
        } 
        from '@angular/material';
 import {MatPaginatorModule} from '@angular/material/paginator'
@@ -66,7 +67,8 @@ import{SimpleComponent} from './admin/practice2/simple-component'
     MatCheckboxModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
   exports: [
     MatTableModule,

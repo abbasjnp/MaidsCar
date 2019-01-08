@@ -44,12 +44,26 @@
    
     <div class="mat-table-main">
         <mat-table #table [dataSource]="datasource" class="mat-table">
+    
+               
+
           <ng-container *ngFor="let col of colDefs" [matColumnDef]="col.name">
             <mat-header-cell *matHeaderCellDef class="mat-header-song" [ngStyle]="{'min-width': col.width}"> {{col.displayName | uppercase}}
               </mat-header-cell>
             <mat-cell *matCellDef="let element" [ngStyle]="{'min-width': col.width}" innerHTML="{{(col.displayFcn) ? col.displayFcn(element):element[col.name]}}">
             </mat-cell>
           </ng-container>
+          <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef style="min-width: 70px;">Actions</mat-header-cell>
+                <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()" class="button-row" style="min-width: 70px;">
+                  <button mat-icon-button (click)="editSociety(element)" matTooltip="Edit">
+                    <mat-icon class="color-yellow">edit</mat-icon>
+                  </button>
+                  <button matTooltip="Delete" mat-icon-button (click)="deleteSociety(element)">
+                    <mat-icon class="color-orange">delete</mat-icon>
+                  </button>
+                </mat-cell>
+              </ng-container> 
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

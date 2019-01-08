@@ -88,6 +88,7 @@ export class ResidentsComponent{
             width: '100px',
             displayFcn:elem =>(elem.adhaar_no && elem.adhaar_no > 0) ? 'Aadhaar Card':''
           },
+        
 
 
     ]
@@ -102,6 +103,7 @@ console.log(this.paginator,"]]]]]]]]]]]");
    
     ngOnInit() {
        this.getResidentsList();
+       this.displayedColumns.push('action')
     }
     getResidentsList(){
         this.adminservice.getResidents()

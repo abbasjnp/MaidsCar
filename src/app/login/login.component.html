@@ -10,9 +10,9 @@
           <form (ngSubmit)="loginUser()" #loginForm="ngForm">
             <div class="form-group">
               <mat-form-field class="example-full-width">
-                <input matInput matInputType="email" class="input-full-width"  class="form-control" email placeholder="Email Id" 
+                <input matInput type="email" class="input-full-width"  class="form-control" email placeholder="Email Id" 
                  [(ngModel)]="loginUserData.email" #email="ngModel" name="email"  required>
-                 <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                 <mat-error  *ngIf="email.hasError('email') && !email.hasError('required')">
                   Please enter a valid email address
                 </mat-error>
                 <mat-error *ngIf="email.hasError('required')">
@@ -30,7 +30,7 @@
               </mat-form-field>
             </div>
             <div >
-              <button class="login-button" type="submit" [disabled]="loginForm.form.invalid">SIGN IN</button>
+              <button class="btn btn-primary" class="login-button" type="submit"   [disabled]="!loginForm.form.valid">SIGN IN</button>
           </div>    
           </form>
         </div>

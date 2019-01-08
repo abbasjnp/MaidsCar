@@ -71,7 +71,10 @@ export class SocietyComponent implements OnInit, AfterViewInit {
             ).subscribe()
           }
 
-
+          deleteSociety(element:Society){
+        // this.adminService.deleteSociety(this.society)
+            console.log(element);
+    }
 
     // Begining ---- Event Handling Logic for the Selection Operation
     isAllSelected() {

@@ -32,12 +32,8 @@ export class LoginComponent implements OnInit {
                 .subscribe(
                   res =>{
                     console.log(res);
-                    if(res.success){
-                    localStorage.setItem('access_token',res.access_token),
-                    this.router.navigate(['/society'])
-                    
-                    }
-                    else{
+                    if(res.success===false)
+                       {
                       console.log(res.error);
                       this.showError = res.error;
                       this.snackBar.open(this.showError, '', {
@@ -47,7 +43,14 @@ export class LoginComponent implements OnInit {
                         panelClass: 'back-green'
                       });
                     }
-                  },
+                    else{
+                      
+                        localStorage.setItem('access_token',res.access_token),
+                        this.router.navigate(['/society'])
+                      
+                    }
+                    },
+                  
                   error =>console.log(error)
                 )
   }

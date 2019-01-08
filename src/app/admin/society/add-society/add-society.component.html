@@ -49,7 +49,7 @@
        
       </section>
       <div [hidden]="!submitted" class="success_society">
-        <h4 *ngIf="response"> You added a new Society successfully..</h4>
+        <h4 *ngIf="response"> {{response}}</h4>
         <h3>{{errormsg}}</h3>
         <button class="goBack-button"(click)="goBack()">Go Back</button>
       </div>

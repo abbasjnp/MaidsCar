@@ -16,7 +16,7 @@ export class AdminService {
     private httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer qKLhQcm6LA5xryeyi7sSSbCaUwDchI'
+            'Authorization': 'Bearer oeR5uYtTpH2DwxpMf8wCfEZzBCYW9Z'
         })
     };
 
@@ -42,9 +42,16 @@ export class AdminService {
              
           }
     addSociety(society:Society):Observable<Society>{
-        return this.http.post<Society>((this._base+'/socity'),society,this.httpOptions)
-                                    .pipe(map((data:any)=>data),
+        return this.http.post<Society>((this._base+'/socity/'),society,this.httpOptions)
+                                    .pipe(
                                         catchError(this.errorHandler))
+    }
+
+    deleteSociety(id:number){
+        return this.http.delete ((this._base+'/society/'+id),this.httpOptions)
+                                    .pipe(
+                                        catchError(this.errorHandler)
+                                    )
     }
 
     
